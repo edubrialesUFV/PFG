@@ -1,0 +1,10 @@
+Flask
+docker
+black
+flask-sqlalchemy
+python-dotenv 
+flask-migrate 
+mysqlclient
+gunicorn
+flask-login
+#marshmallow-sqlalchemy
