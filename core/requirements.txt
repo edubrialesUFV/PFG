@@ -7,4 +7,5 @@ flask-migrate
 mysqlclient
 gunicorn
 flask-login
+flask-wtf
 #marshmallow-sqlalchemy

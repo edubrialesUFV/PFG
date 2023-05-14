@@ -7,7 +7,6 @@ views = Blueprint("views", __name__)
 @views.route("/")
 def home():
     servicios = Servicio.query.all()
-    # nuevo_servicio = Services("pepe")
-    # db.session.add(nuevo_servicio)
-    # db.session.commit()
-    return render_template("base.html", servicios=servicios)
+    return render_template("index.html", servicios=servicios)
+
+

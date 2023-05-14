@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}
+Home Page
+{% endblock %}
+
+{% block content %}
+  <!-- Contenido de la página principal -->
+  {% for servicio in servicios %}
+  <div class="btn-group">
+    <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      {{servicio.nombre}}
+    </button>
+    {% if servicio.nombre == "vm"%}
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item"href="">ubuntu</a></li>
+      <li><a class="dropdown-item"href="">kali</a></li>
+    </ul>
+    {%endif%}
+  </div>
+  
+    <p></p>
+  {% endfor %}
+{% endblock %}
