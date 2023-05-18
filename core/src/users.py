@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, url_for
-from models import Usuario, Servicio, Usuario_Servicios
+from models import Usuario
 from db import db
 from flask_login import LoginManager
 from flask_login import login_user, logout_user
@@ -12,6 +12,7 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
+    submit = SubmitField('Log-in')
 
 
 class RegistrationForm(FlaskForm):

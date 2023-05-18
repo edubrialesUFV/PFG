@@ -8,4 +8,6 @@ mysqlclient
 gunicorn
 flask-login
 flask-wtf
+celery[redis]
+
 #marshmallow-sqlalchemy

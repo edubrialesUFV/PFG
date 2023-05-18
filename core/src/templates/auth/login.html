@@ -17,7 +17,7 @@
             {{ form.remember_me(class="form-check-input") }}
             {{ form.remember_me.label(class="form-check-label") }}
         </div>
-        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        {{ form.submit(class="btn btn-primary") }}
     </form>
 </div>
 {% with messages = get_flashed_messages() %}

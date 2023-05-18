@@ -1,5 +1,6 @@
 version: '3.9'
 services:
+
   core:
     build:
       context: core
@@ -16,9 +17,33 @@ services:
       - frontnet
     depends_on:
       - db
+
+  worker:
+    build:
+      context: core
+    command: celery -A app.celery worker --loglevel=info
+    volumes:
+      - ./core/src:/app
+      - /var/run/docker.sock:/var/run/docker.sock
+    env_file: ./.env
+    depends_on:
+      - core
+      - redis
+    networks:
+      - backnet
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - backnet
+
   db:
     image: mysql
     container_name: db
+    restart: unless-stopped
     env_file: .env
     volumes:
       - mariadb_data:/var/lib/mysql
@@ -26,6 +51,7 @@ services:
       MYSQL_ROOT_PASSWORD: root
     networks:
       - backnet
+
   admin:
     image: phpmyadmin
     container_name: admin
