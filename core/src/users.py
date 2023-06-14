@@ -6,6 +6,7 @@ from flask_login import login_user, logout_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, EqualTo
+from tasks import client
 users = Blueprint("users", __name__)
 
 class LoginForm(FlaskForm):
@@ -43,6 +44,9 @@ def register():
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
+        network = client.networks.create(name=form.username.data, driver="bridge")
+        rproxy = client.containers.get('traefik')
+        network.connect(rproxy)
         login_user(user)
         return redirect(url_for('views.home'))
     return render_template('auth/register.html', form=form)

@@ -2,6 +2,7 @@ from db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from sqlalchemy import Enum
+
 class Usuario(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(100), nullable=False, unique=True)
@@ -14,9 +15,10 @@ class Usuario(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 class Vm(db.Model):
-    id = db.Column(db.String(50), primary_key=True)
-    nombre = nombre = db.Column(db.String(100), nullable=False)
+    id = db.Column(db.String(100), primary_key=True)
+    nombre = db.Column(db.String(100), nullable=False)
     pers_datos = db.Column(db.Boolean, default = False)
-    so = db.Column(Enum('kali', 'ubuntu', 'fedora', name='so'), nullable=False)
+    so = db.Column(Enum('Kali', 'Ubuntu', 'Fedora', name='so'), nullable=False)
+    port = db.Column(db.Integer, autoincrement=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'), nullable=False)
 

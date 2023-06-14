@@ -1,0 +1,6 @@
+0ca673464f111e2251eb65bb963dc78d  usr/bin/dumb-init
+d2cf9ffd5134b636bc0e400318503df3  usr/share/doc/dumb-init/README.md.gz
+d5fc4e1f87387a2a709b2ea1664fdda4  usr/share/doc/dumb-init/changelog.gz
+f9af590a6e95e281173c9deb86ebc9d2  usr/share/doc/dumb-init/copyright
+9519bf9b77dada7b848b00abd6c15991  usr/share/lintian/overrides/dumb-init
+98581722a30db91c321e69ad291545d8  usr/share/man/man1/dumb-init.1.gz
