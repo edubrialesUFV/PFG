@@ -1,49 +1,97 @@
 {% extends "base.html" %}
 
 {% block title %}
-Home Page
+PaaS UFV
 {% endblock %}
 
 {% block content %}
-<!-- Contenido de la página principal -->
-<div class="container mt-5">
-  <div class="row">
-    {% for maquina in maquinas%}
-    <div class="col mt-3">
-      <div class="card shadow rounded-4 style=" width: 18rem;">
-        {% if maquina.so == "Ubuntu" %}
-        <img src="{{ url_for('static', filename='/media/18-curso-linux-ubuntu-administracion-basico.png') }}"
-          class="card-img-top" alt="..." style="width: 100%; height: 200px; object-fit: contain;">
-        {% elif maquina.so == "Kali" %}
-        <img src="{{ url_for('static', filename='/media/distributor-logo-kali-linux-icon-2048x2005-dki611fk.png') }}"
-          class="card-img-top" alt="..." style="width: 100%; height: 200px; object-fit: contain;">
-        {% endif%}
-        <div class="card-body">
-          <h5 class="card-title">{{maquina.nombre}}</h5>
-          <p class="card-text">{{maquina.so}}</p>
-        
-        <div class="btn-group w-50 mx-auto text-center" role="group" aria-label="Basic mixed styles example">
-          <a href="{{url_for('views.start_container', container=maquina.id)}}" target="_blank"><button type="button"
-              class="btn btn-info">Iniciar</button></a>
-          <a href="{{url_for('views.start_container', container=maquina.id)}}"><button type="button"
-              class="btn btn-secondary">Parar</button></a>
-          <a href="{{url_for('views.eliminar_container', container=maquina.id)}}"><button type="button"
-              class="btn btn-danger">Eliminar</button></a>
+<div style="margin-left: 300px;">
+  <h1 class="mt-3 mb-4">Bienvenido {{ current_user.nombre }}!</h1>
+  <div class="container">
+    <div class="row">
+      {% for maquina in maquinas %}
+      <div class="col mb-4">
+        <div class="card h-100">
+          <div class="titulo"><span>{% if maquina.so == 'Ubuntu' %}
+              <i class="fab fa-ubuntu" style="color: orangered"></i>
+              {% elif maquina.so == 'Fedora' %}
+              <i class="fab fa-fedora" style="color: cornflowerblue;"></i>
+              {% else %}
+              <i class="fas fa-dragon" style="color: purple;"></i>
+              {% endif %}
+            </span>{{maquina.so}} - {{maquina.nombre}} <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"
+              aria-expanded="false"> <span style="float: right;"><i class="bi bi-three-dots-vertical"></i></span></a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+
+              <li><a class="dropdown-item" href="{{url_for('views.eliminar_container', container=maquina.id)}}"><i
+                    class="bi bi-trash-fill"></i></i> Eliminar contenedor</a></li>
+            </ul>
+          </div>
+
+          <div class="card-body">
+
+          </div>
+
+          <div class="play-icon">
+            <a href="{{url_for('views.start_container', container=maquina.id)}}" style="text-decoration: none;"
+              target="_blank">
+              <i class="bi bi-play-fill"></i>
+            </a>
+          </div>
+
+          {% if maquina.ui == 1 %}
+          <span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill"
+            style="width: 40px; margin-right: 9.5rem;">UI</span>
+          {% else %}
+          <span class="badge bg-warning-subtle border border-warning-subtle text-warning-emphasis rounded-pill"
+            style="width: 80px; margin-right: 8rem;">Terminal</span>
+          {% endif %}
+
         </div>
       </div>
-      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-    <div class="col mt-3">
-      <div class="card shadow rounded-4 bg-primary text-center" style="width: 18rem; height: 100%;">
-          <div class="card-body d-flex align-items-center justify-content-center">
-              <a href="{{url_for('views.create_vm')}}">
-                  <i class="fas fa-plus fa-3x text-white"></i>
-              </a>
-          </div>
-      </div>
   </div>
+  {% if codespaces%}
+  <div class="border-bottom border-secundary my-4"></div>
+  {% endif %}
+  <div class="container">
+    <div class="row">
+      {% for code in codespaces %}
+      <div class="col mb-4">
+        <div class="card h-100">
+          <div class="titulo"><span>{% if code.leng == 'Python' %}
+              <i class="fab fa-python"></i>
+              {% elif code.leng == 'Java' %}
+              <i class="fab fa-java"></i>
+              {% else %}
+              <i class="fab fa-cuttlefish"></i>
+              {% endif %}
+            </span>{{code.leng}} - {{code.nombre}}<a href="#" class="dropdown-toggle" data-bs-toggle="dropdown"
+              aria-expanded="false"> <span style="float: right;"><i class="bi bi-three-dots-vertical"></i></span></a>
+            <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+
+              <li><a class="dropdown-item" href="{{url_for('views.eliminar_container_code', container=code.id)}}"><i
+                    class="bi bi-trash-fill"></i></i> Eliminar contenedor</a></li>
+            </ul>
+          </div>
+          <div class="card-body">
+          </div>
+          <div class="play-icon">
+            <a href="{{url_for('views.start_container_code', container=code.id)}}" style="text-decoration: none;"
+              target="_blank">
+              <i class="bi bi-play-fill"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
   </div>
 </div>
 
+
+{% include "terminal_model.html" %}
+{% include "ui_model.html" %}
+{% include "code_model.html" %}
 {% endblock %}

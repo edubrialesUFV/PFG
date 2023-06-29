@@ -1,42 +1,46 @@
-<div class="px-3 py-2 text-bg-dark">
-  <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="{{ url_for('views.home')}}" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
-        <i class="bi bi-bootstrap" style="font-size: 2rem; color: white;"></i>
-      </a>
 
-      <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
-        <li>
-          <a href="#" class="nav-link text-secondary">
-            <i class="bi bi-house-door" style="font-size: 2rem;"></i>
-            Home
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <i class="bi bi-speedometer2" style="font-size: 2rem;"></i>
-            Dashboard
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <i class="bi bi-table" style="font-size: 2rem;"></i>
-            Orders
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <i class="bi bi-grid" style="font-size: 2rem;"></i>
-            Products
-          </a>
-        </li>
-        <li>
-          <a href="#" class="nav-link text-white">
-            <i class="bi bi-people-circle" style="font-size: 2rem;"></i>
-            Customers
-          </a>
-        </li>
-      </ul>
-    </div>
+<div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style="width: 280px;">
+  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <i class="bi-cloud-haze2-fill me-2" style="font-size: 2rem; color: white;"></i>
+    <span class="fs-4">PaaS UFV</span>
+  </a>
+  <hr>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="{{url_for('views.home')}}" class="nav-link active" aria-current="page">
+        <i class="bi-grid me-2"></i>
+        Home
+      </a>
+    </li>
+    
+    <li>
+      <a href="#" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+        <i class="bi-window-plus me-2"></i>
+        New VM UI
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <i class="bi-terminal-plus me-2"></i>
+        New VM terminal
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link text-white" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+        <i class="bi-braces me-2"></i>
+        New Codespace
+      </a>
+    </li>
+  </ul>
+  <hr>
+  <div class="dropdown">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+      <strong>{{ current_user.nombre }}</strong>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+      
+      <li><a class="dropdown-item" href="{{url_for('users.logout')}}"><i class="bi-box-arrow-right me-1"></i>Sign out</a></li>
+    </ul>
   </div>
 </div>

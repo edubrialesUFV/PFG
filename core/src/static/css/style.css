@@ -7,3 +7,59 @@
 /* *{
     outline: red dashed 1px;
 } */
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 200px; /* puedes ajustar esto según tus necesidades */
+    overflow: auto;
+    background-color: #333; /* para visualizar el sidebar, puedes cambiarlo según tu diseño */
+  }
+
+
+
+
+  .titulo{
+    font-size: 1.12rem;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: none;
+    border-radius: 12.5px !important;
+    background-color: #f7f7f8 !important;
+    transition: background-color 0.3s ease;
+    padding: 0.8rem; /* Añade más padding */
+    
+  }
+  
+  .card:hover {
+    background-color: white; /* Cambia a tu color preferido */
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
+  }
+  
+
+ 
+  
+  .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .play-icon i {
+    font-size: 2rem;
+    opacity: 60%;
+    color: #333;
+  }
+  
+  .card:hover .play-icon {
+    opacity: 1;
+  }
+  
+
+  

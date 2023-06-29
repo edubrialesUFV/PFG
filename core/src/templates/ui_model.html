@@ -1,0 +1,56 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi-window-plus me-2"></i>Crear Maquina virtual con UI</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST">
+            <div class="modal-body">
+                <div class="container">
+                        {{ form1.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form1.nombre_ui.label(class="form-control-label") }}
+                            {{ form1.nombre_ui(class="form-control") }}
+                            {% if form1.nombre_ui.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form1.nombre_ui.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form1.so_ui.label(class="form-label") }}
+                            {{ form1.so_ui(class="form-control") }}
+                            {% if form1.so_ui.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form1.so_ui.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="form-check">
+                            {{ form1.pers_datos_ui.label(class="form-check-label") }}
+                            {{ form1.pers_datos_ui(class="form-check-input") }}
+                            {% if form1.pers_datos_ui.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form1.pers_datos_ui.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{ form1.submit_ui(class="btn btn-primary") }}
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

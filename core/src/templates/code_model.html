@@ -1,0 +1,45 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><i class="bi-braces me-2"></i>Crear codespace</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST">
+            <div class="modal-body">
+                <div class="container">
+                        {{ form2.hidden_tag() }}
+                        <div class="form-group">
+                            {{ form2.nombre_code.label(class="form-control-label") }}
+                            {{ form2.nombre_code(class="form-control") }}
+                            {% if form2.nombre_code.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form2.nombre_code.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="form-group">
+                            {{ form2.lenguaje.label(class="form-label") }}
+                            {{ form2.lenguaje(class="form-control") }}
+                            {% if form2.lenguaje.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form2.lenguaje.errors %}
+                                {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    {{ form2.submit_code(class="btn btn-primary") }}
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
